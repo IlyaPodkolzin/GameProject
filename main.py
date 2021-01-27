@@ -9,7 +9,9 @@ from monet import Coin
 WIN_WIDTH = 800  # Ширина создаваемого окна
 WIN_HEIGHT = 600  # Высота
 DISPLAY = (WIN_WIDTH, WIN_HEIGHT)  # Группируем ширину и высоту в одну переменную
-BACKGROUND_COLOR = (0, 0, 0)
+MENU_TEXT_COLOR = (139, 0, 255)
+MENU_BACKGROUND_COLOR = (255, 255, 0)
+GAME_BACKGROUND_COLOR = (0, 0, 0)
 TILE_WIDTH = 70
 TILE_HEIGHT = 70
 TOTAL_LEVELS = 2  # Всего уровней
@@ -104,17 +106,56 @@ def draw_final_results(screen, total_score):
     congrats_running = True
     while congrats_running:
         for ev in pygame.event.get():
-            if ev.type == pygame.MOUSEBUTTONDOWN or ev.type == pygame.KEYDOWN:
+            if ev.type == pygame.QUIT:
                 pygame.quit()
+            elif ev.type == pygame.MOUSEBUTTONDOWN or ev.type == pygame.KEYDOWN:
+                pygame.quit()
+
+
+def open_menu(screen, background):
+    menu_font = pygame.font.Font(None, 70)
+    text = menu_font.render("Trump The Legend", True, Color(MENU_TEXT_COLOR))
+    screen.blit(text, (WIN_WIDTH // 2 - text.get_width() // 2,
+                       WIN_HEIGHT // 2 - text.get_height() * 2))
+
+    menu_font = pygame.font.Font(None, 40)
+    text = menu_font.render("Играть", True, Color(MENU_TEXT_COLOR))
+    screen.blit(text, (WIN_WIDTH // 2 - text.get_width() // 2,
+                       WIN_HEIGHT // 2 - text.get_height() // 2))
+    play_btn_rect = (WIN_WIDTH // 2 - text.get_width() // 2,
+                     WIN_HEIGHT // 2 - text.get_height() // 2,
+                     text.get_width(), text.get_height())
+
+    menu_font = pygame.font.Font(None, 40)
+    text = menu_font.render("Таблица рекордов", True, Color(MENU_TEXT_COLOR))
+    screen.blit(text, (WIN_WIDTH // 2 - text.get_width() // 2,
+                       WIN_HEIGHT // 2 + text.get_height()))
+    records_btn_rect = (WIN_WIDTH // 2 - text.get_width() // 2,
+                        WIN_HEIGHT // 2 + text.get_height(),
+                        text.get_width(), text.get_height())
+
+    menu_running = True
+    while menu_running:
+        for ev in pygame.event.get():
+            if ev.type == pygame.QUIT:
+                pygame.quit()
+            elif ev.type == pygame.MOUSEBUTTONDOWN\
+                    and play_btn_rect[0] <= ev.pos[0] <= play_btn_rect[0] + play_btn_rect[2]\
+                    and play_btn_rect[1] <= ev.pos[1] <= play_btn_rect[1] + play_btn_rect[3]:
+                menu_running = False
+        pygame.display.update()
 
 
 def main():
     pygame.init()
     screen = pygame.display.set_mode(DISPLAY)
-    pygame.display.set_caption("Trump - legend")  # Пишем в шапку
+    pygame.display.set_caption("Trump The Legend")  # Пишем в шапку
 
     bg = Surface((WIN_WIDTH, WIN_HEIGHT))  # Создание заднего фона
-    bg.fill(Color(BACKGROUND_COLOR))  # Заливаем фон сплошным цветом
+
+    open_menu(screen, bg)
+
+    bg.fill(Color(GAME_BACKGROUND_COLOR))  # Заливаем фон сплошным цветом
 
     current_level = -1  # уровень на данный момент (!!!)
     hero = Player(70, 70)  # создаем героя по (x,y) координатам
