@@ -9,7 +9,8 @@ class Coin(sprite.Sprite):
     def __init__(self, x, y):
         sprite.Sprite.__init__(self)
         self.image = ACTIVATED_IMAGE
-        self.rect = Rect(x, y, self.image.get_width(), self.image.get_height())
+        self.rect = Rect(x + self.image.get_width() // 2, y + self.image.get_height() // 2,
+                         self.image.get_width(), self.image.get_height())
         self.can_be_taken = True
 
     def set_activated(self, flag):
