@@ -14,6 +14,8 @@ TILE_WIDTH = 70
 TILE_HEIGHT = 70
 TOTAL_LEVELS = 2  # Всего уровней
 
+CONGRATS_BACKGROUND = image.load('blocks_sprites/original.jpg')
+
 
 class Camera(object):  # класс для отображения уровня большего по размеру чем окно(эффект камеры)
     def __init__(self, camera_func, width, height):
@@ -60,8 +62,50 @@ def draw_pause(screen):  # рисуем паузу
 
 def draw_score(screen, score):
     score_font = pygame.font.Font(None, 30)
-    text = score_font.render("Очки: " + score, True, (0, 255, 0))
+    text = score_font.render(f"Очки: {score}", True, (0, 255, 0))
     screen.blit(text, (5, 0))
+
+
+def draw_intermediate_results(screen, current_level, level_score):
+    score_font = pygame.font.Font(None, 60)
+    text = score_font.render(f"Уровень {current_level} пройден!", True, (0, 255, 0))
+    screen.blit(text, (WIN_WIDTH // 2 - text.get_width() // 2,
+                       WIN_HEIGHT // 2 - text.get_height() // 2))
+
+    score_font = pygame.font.Font(None, 30)
+    text = score_font.render(f"Набранные очки: {level_score}", True, (0, 255, 0))
+    screen.blit(text, (WIN_WIDTH // 2 - text.get_width() // 2,
+                       WIN_HEIGHT // 2 + text.get_height() * 2))
+    pygame.display.update()
+
+    congrats_running = True
+    while congrats_running:
+        for ev in pygame.event.get():
+            if ev.type == pygame.KEYDOWN and ev.key == pygame.K_ESCAPE:
+                pygame.quit()
+            elif ev.type == pygame.KEYDOWN and ev.key == pygame.K_RETURN:
+                congrats_running = False
+
+
+def draw_final_results(screen, total_score):
+    screen.blit(CONGRATS_BACKGROUND, (0, 0))
+
+    total_score_font = pygame.font.Font(None, 60)
+    text = total_score_font.render("Вы успешно прошли все уровни!", True, (0, 255, 0))
+    screen.blit(text, (WIN_WIDTH // 2 - text.get_width() // 2,
+                       WIN_HEIGHT // 2 - text.get_height() // 2))
+
+    score_font = pygame.font.Font(None, 30)
+    text = score_font.render(f"Набранные очки за все уровни: {total_score}", True, (0, 255, 0))
+    screen.blit(text, (WIN_WIDTH // 2 - text.get_width() // 2,
+                       WIN_HEIGHT // 2 + text.get_height() * 2))
+    pygame.display.update()
+
+    congrats_running = True
+    while congrats_running:
+        for ev in pygame.event.get():
+            if ev.type == pygame.MOUSEBUTTONDOWN or ev.type == pygame.KEYDOWN:
+                pygame.quit()
 
 
 def main():
@@ -73,12 +117,11 @@ def main():
     bg.fill(Color(BACKGROUND_COLOR))  # Заливаем фон сплошным цветом
 
     current_level = -1  # уровень на данный момент (!!!)
+    hero = Player(70, 70)  # создаем героя по (x,y) координатам
 
     while current_level < TOTAL_LEVELS - 1:
 
         current_level += 1
-
-        hero = Player(70, 70)  # создаем героя по (x,y) координатам
 
         left = right = False  # по умолчанию — стоим
         up = False
@@ -118,6 +161,8 @@ def main():
                     ex = Exit(x, y)
                     entities.add(ex)
                     exits.append(ex)
+                elif col == "h":  # для героя
+                    hero.teleporting(x, y)
 
                 x += TILE_WIDTH  # блоки платформы ставятся на ширине блоков
             y += TILE_HEIGHT  # то же самое и с высотой
@@ -168,12 +213,18 @@ def main():
             if is_on_pause:
                 draw_pause(screen)
 
-            draw_score(screen, str(hero.total_scores))
-
             if hero.exited(exits):
                 running = False
 
+            if running:
+                draw_score(screen, hero.level_scores)
+
             pygame.display.update()  # обновление и вывод всех изменений на экран
+
+        draw_intermediate_results(screen, current_level + 1, hero.level_scores)
+        hero.zeroize_level_score()
+
+    draw_final_results(screen, hero.total_scores)
 
 
 if __name__ == "__main__":

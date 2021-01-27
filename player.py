@@ -97,6 +97,7 @@ class Player(sprite.Sprite):
     def die(self, coins):
         time.wait(500)
         self.teleporting(self.startX, self.startY)  # перемещаемся в начальные координаты
+        self.total_scores -= self.level_scores
         self.level_scores = 0
         for monet in coins:  # монеты возвращаются на место
             monet.set_activated(True)
@@ -107,3 +108,6 @@ class Player(sprite.Sprite):
 
     def exited(self, exits):
         return any([sprite.collide_rect(self, ex) for ex in exits])
+
+    def zeroize_level_score(self):
+        self.level_scores = 0
