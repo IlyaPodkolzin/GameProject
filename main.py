@@ -15,7 +15,7 @@ RECORDS_TEXT_COLOR = (255, 255, 0)
 GAME_BACKGROUND_COLOR = (0, 0, 0)
 TILE_WIDTH = 70
 TILE_HEIGHT = 70
-TOTAL_LEVELS = 1  # Всего уровней
+TOTAL_LEVELS = 2  # Всего уровней
 
 CONGRATS_BACKGROUND = image.load('blocks_sprites/original.jpg')
 
