@@ -107,9 +107,9 @@ def draw_final_results(screen, total_score, records_holder):
     text = score_font.render("Введите имя: ", True, (0, 255, 255))
     screen.blit(text, (30, 540))
 
-    draw.rect(screen, (0, 0, 0), (45 + text.get_width(), 530, 130, 30))
+    draw.rect(screen, (0, 0, 0), (190, 530, 130, 30))
 
-    nickname = ''
+    nickname = []
     congrats_running = True
     while congrats_running:
         for ev in event.get():
@@ -117,12 +117,18 @@ def draw_final_results(screen, total_score, records_holder):
                 quit()
             elif ev.type == KEYDOWN and ev.key == K_RETURN:
                 congrats_running = False
-            elif ev.type == KEYDOWN and len(nickname) < 10 and ev.key != K_BACKSPACE:
+            elif ev.type == KEYDOWN and ev.key == K_BACKSPACE:
+                if nickname is not []:
+                    nickname = nickname[:-1]
+            elif ev.type == KEYDOWN and len(nickname) < 10:
                 nickname += ev.unicode
-        text = score_font.render(nickname, True, (255, 255, 255))
+        draw.rect(screen, (0, 0, 0), (190, 530, 130, 30))
+        text = score_font.render(''.join(nickname), True, (255, 255, 255))
         screen.blit(text, (190, 540))
         display.update()
-    records_holder.add_new_record([nickname, total_score])
+    if len(nickname) == 0:
+        nickname = ['-']
+    records_holder.add_new_record([''.join(nickname), total_score])
 
 
 def open_menu(screen, records_holder):
