@@ -20,9 +20,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a1c15759-d20e-4acf-a769-06f80fb71852" name="Default Changelist" comment="Исправлен баг с монетками, добавлены спрайты выхода">
-      <change afterPath="$PROJECT_DIR$/records_holder.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/records_holder.py" beforeDir="false" afterPath="$PROJECT_DIR$/records_holder.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -267,7 +267,14 @@
       <option name="project" value="LOCAL" />
       <updated>1611786568195</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="Частично выполнена таблица рекордов">
+      <created>1611794768480</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1611794768480</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -283,7 +290,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Новая заготовка игры с персонажем (умеет ходить, прыгать, стрелять)" />
     <MESSAGE value="Удалены лишние файлы + заготовка под паузу" />
     <MESSAGE value="Сделана пауза" />
     <MESSAGE value="Исправлена ошибка с анимацией хождения влево" />
@@ -308,7 +314,8 @@
     <MESSAGE value="Добавлено отображение результатов после каждого уровня и игры" />
     <MESSAGE value="Теперь монетки отображаются посередине игрового тайла" />
     <MESSAGE value="Добавлено меню с возможностью начала игры" />
-    <option name="LAST_COMMIT_MESSAGE" value="Добавлено меню с возможностью начала игры" />
+    <MESSAGE value="Частично выполнена таблица рекордов" />
+    <option name="LAST_COMMIT_MESSAGE" value="Частично выполнена таблица рекордов" />
   </component>
   <component name="WindowStateProjectService">
     <state x="1170" y="270" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1611791826235">
@@ -319,42 +326,42 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="1220" y="275" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1611394314503" />
-    <state width="1899" height="139" key="GridCell.Tab.0.bottom" timestamp="1611794581640">
+    <state width="1899" height="163" key="GridCell.Tab.0.bottom" timestamp="1611847059038">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="139" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1611794581640" />
-    <state width="1899" height="139" key="GridCell.Tab.0.center" timestamp="1611794581640">
+    <state width="1899" height="163" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1611847059038" />
+    <state width="1899" height="163" key="GridCell.Tab.0.center" timestamp="1611847059038">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="139" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1611794581640" />
-    <state width="1899" height="139" key="GridCell.Tab.0.left" timestamp="1611794581640">
+    <state width="1899" height="163" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1611847059038" />
+    <state width="1899" height="163" key="GridCell.Tab.0.left" timestamp="1611847059037">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="139" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1611794581640" />
-    <state width="1899" height="139" key="GridCell.Tab.0.right" timestamp="1611794581640">
+    <state width="1899" height="163" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1611847059037" />
+    <state width="1899" height="163" key="GridCell.Tab.0.right" timestamp="1611847059038">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="139" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1611794581640" />
-    <state width="1899" height="402" key="GridCell.Tab.1.bottom" timestamp="1611786349497">
+    <state width="1899" height="163" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1611847059038" />
+    <state width="1899" height="402" key="GridCell.Tab.1.bottom" timestamp="1611846987501">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="402" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1611786349497" />
-    <state width="1899" height="402" key="GridCell.Tab.1.center" timestamp="1611786349496">
+    <state width="1899" height="402" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1611846987501" />
+    <state width="1899" height="402" key="GridCell.Tab.1.center" timestamp="1611846987501">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="402" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1611786349496" />
-    <state width="1899" height="402" key="GridCell.Tab.1.left" timestamp="1611786349496">
+    <state width="1899" height="402" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1611846987501" />
+    <state width="1899" height="402" key="GridCell.Tab.1.left" timestamp="1611846987501">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="402" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1611786349496" />
-    <state width="1899" height="402" key="GridCell.Tab.1.right" timestamp="1611786349497">
+    <state width="1899" height="402" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1611846987501" />
+    <state width="1899" height="402" key="GridCell.Tab.1.right" timestamp="1611846987501">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="402" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1611786349497" />
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1611783982280">
+    <state width="1899" height="402" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1611846987501" />
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1611794774465">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1611783982280" />
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1611794774465" />
     <state x="733" y="394" width="611" height="281" key="org.intellij.images.editor.actions.BackgroundImageDialog" timestamp="1611783489589">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -363,5 +370,16 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1611788891052" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/records_holder.py</url>
+          <line>11</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

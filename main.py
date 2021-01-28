@@ -116,15 +116,13 @@ def draw_final_results(screen, total_score, records_holder):
             if ev.type == QUIT:
                 quit()
             elif ev.type == KEYDOWN and ev.key == K_RETURN:
-                quit()
-            elif ev.type == KEYDOWN and ev.key == K_BACKSPACE:
-                if nickname != "":
-                    nickname = nickname[:-1]
-            elif ev.type == KEYDOWN and len(nickname) < 10:
+                congrats_running = False
+            elif ev.type == KEYDOWN and len(nickname) < 10 and ev.key != K_BACKSPACE:
                 nickname += ev.unicode
         text = score_font.render(nickname, True, (255, 255, 255))
         screen.blit(text, (190, 540))
         display.update()
+    records_holder.add_new_record([nickname, total_score])
 
 
 def open_menu(screen, records_holder):
