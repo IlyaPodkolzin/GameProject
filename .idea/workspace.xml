@@ -20,6 +20,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a1c15759-d20e-4acf-a769-06f80fb71852" name="Default Changelist" comment="Исправлен баг с монетками, добавлены спрайты выхода">
+      <change afterPath="$PROJECT_DIR$/records_holder.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
@@ -259,7 +260,14 @@
       <option name="project" value="LOCAL" />
       <updated>1611783977436</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="Добавлено меню с возможностью начала игры">
+      <created>1611786568195</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1611786568195</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -299,33 +307,34 @@
     <MESSAGE value="Избавлен баг с незагружающейся монеткой" />
     <MESSAGE value="Добавлено отображение результатов после каждого уровня и игры" />
     <MESSAGE value="Теперь монетки отображаются посередине игрового тайла" />
-    <option name="LAST_COMMIT_MESSAGE" value="Теперь монетки отображаются посередине игрового тайла" />
+    <MESSAGE value="Добавлено меню с возможностью начала игры" />
+    <option name="LAST_COMMIT_MESSAGE" value="Добавлено меню с возможностью начала игры" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="1170" y="270" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1611430955702">
+    <state x="1170" y="270" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1611791826235">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="1170" y="270" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1611430955702" />
+    <state x="1170" y="270" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1611791826235" />
     <state x="1220" y="275" key="FileChooserDialogImpl" timestamp="1611394314503">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="1220" y="275" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1611394314503" />
-    <state width="1899" height="2" key="GridCell.Tab.0.bottom" timestamp="1611786523336">
+    <state width="1899" height="139" key="GridCell.Tab.0.bottom" timestamp="1611794581640">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="2" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1611786523336" />
-    <state width="1899" height="2" key="GridCell.Tab.0.center" timestamp="1611786523335">
+    <state width="1899" height="139" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1611794581640" />
+    <state width="1899" height="139" key="GridCell.Tab.0.center" timestamp="1611794581640">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="2" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1611786523335" />
-    <state width="1899" height="2" key="GridCell.Tab.0.left" timestamp="1611786523335">
+    <state width="1899" height="139" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1611794581640" />
+    <state width="1899" height="139" key="GridCell.Tab.0.left" timestamp="1611794581640">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="2" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1611786523335" />
-    <state width="1899" height="2" key="GridCell.Tab.0.right" timestamp="1611786523336">
+    <state width="1899" height="139" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1611794581640" />
+    <state width="1899" height="139" key="GridCell.Tab.0.right" timestamp="1611794581640">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="2" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1611786523336" />
+    <state width="1899" height="139" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1611794581640" />
     <state width="1899" height="402" key="GridCell.Tab.1.bottom" timestamp="1611786349497">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -350,5 +359,9 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="733" y="394" width="611" height="281" key="org.intellij.images.editor.actions.BackgroundImageDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1611783489589" />
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1611788891052">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1611788891052" />
   </component>
 </project>

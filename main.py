@@ -1,20 +1,21 @@
-import pygame
 from pygame import *
 from player import Player
 from blocks import Platform, BlockDie, Exit
 from monsters import Monster
 from monet import Coin
+from records_holder import RecordsHolder
+
 
 # Объявляем переменные
 WIN_WIDTH = 800  # Ширина создаваемого окна
 WIN_HEIGHT = 600  # Высота
 DISPLAY = (WIN_WIDTH, WIN_HEIGHT)  # Группируем ширину и высоту в одну переменную
 MENU_TEXT_COLOR = (139, 0, 255)
-MENU_BACKGROUND_COLOR = (255, 255, 0)
+RECORDS_TEXT_COLOR = (255, 255, 0)
 GAME_BACKGROUND_COLOR = (0, 0, 0)
 TILE_WIDTH = 70
 TILE_HEIGHT = 70
-TOTAL_LEVELS = 2  # Всего уровней
+TOTAL_LEVELS = 1  # Всего уровней
 
 CONGRATS_BACKGROUND = image.load('blocks_sprites/original.jpg')
 
@@ -51,74 +52,89 @@ def load_level(filename):  # загрузка уровня
 
 
 def draw_pause(screen):  # рисуем паузу
-    pause_font = pygame.font.Font(None, 50)
+    pause_font = font.Font(None, 50)
     text = pause_font.render("Пауза", True, (255, 255, 255))
     screen.blit(text, (WIN_WIDTH // 2 - text.get_width() // 2,
                        WIN_HEIGHT // 2 - text.get_width() // 2))
 
-    pause_font = pygame.font.Font(None, 30)
+    pause_font = font.Font(None, 30)
     text = pause_font.render("Esc - продолжить", True, (255, 255, 255))
     screen.blit(text, (WIN_WIDTH // 2 - text.get_width() // 2,
                        WIN_HEIGHT // 2))
 
 
 def draw_score(screen, score):
-    score_font = pygame.font.Font(None, 30)
+    score_font = font.Font(None, 30)
     text = score_font.render(f"Очки: {score}", True, (0, 255, 0))
     screen.blit(text, (5, 0))
 
 
 def draw_intermediate_results(screen, current_level, level_score):
-    score_font = pygame.font.Font(None, 60)
+    score_font = font.Font(None, 60)
     text = score_font.render(f"Уровень {current_level} пройден!", True, (0, 255, 0))
     screen.blit(text, (WIN_WIDTH // 2 - text.get_width() // 2,
                        WIN_HEIGHT // 2 - text.get_height() // 2))
 
-    score_font = pygame.font.Font(None, 30)
+    score_font = font.Font(None, 30)
     text = score_font.render(f"Набранные очки: {level_score}", True, (0, 255, 0))
     screen.blit(text, (WIN_WIDTH // 2 - text.get_width() // 2,
                        WIN_HEIGHT // 2 + text.get_height() * 2))
-    pygame.display.update()
+    display.update()
 
     congrats_running = True
     while congrats_running:
-        for ev in pygame.event.get():
-            if ev.type == pygame.KEYDOWN and ev.key == pygame.K_ESCAPE:
-                pygame.quit()
-            elif ev.type == pygame.KEYDOWN and ev.key == pygame.K_RETURN:
+        for ev in event.get():
+            if ev.type == KEYDOWN and ev.key == K_ESCAPE:
+                quit()
+            elif ev.type == KEYDOWN and ev.key == K_RETURN:
                 congrats_running = False
 
 
-def draw_final_results(screen, total_score):
+def draw_final_results(screen, total_score, records_holder):
     screen.blit(CONGRATS_BACKGROUND, (0, 0))
 
-    total_score_font = pygame.font.Font(None, 60)
+    total_score_font = font.Font(None, 60)
     text = total_score_font.render("Вы успешно прошли все уровни!", True, (0, 255, 0))
     screen.blit(text, (WIN_WIDTH // 2 - text.get_width() // 2,
                        WIN_HEIGHT // 2 - text.get_height() // 2))
 
-    score_font = pygame.font.Font(None, 30)
+    score_font = font.Font(None, 30)
     text = score_font.render(f"Набранные очки за все уровни: {total_score}", True, (0, 255, 0))
     screen.blit(text, (WIN_WIDTH // 2 - text.get_width() // 2,
                        WIN_HEIGHT // 2 + text.get_height() * 2))
-    pygame.display.update()
 
+    score_font = font.Font(None, 30)
+    text = score_font.render("Введите имя: ", True, (0, 255, 255))
+    screen.blit(text, (30, 540))
+
+    draw.rect(screen, (0, 0, 0), (45 + text.get_width(), 530, 130, 30))
+
+    nickname = ''
     congrats_running = True
     while congrats_running:
-        for ev in pygame.event.get():
-            if ev.type == pygame.QUIT:
-                pygame.quit()
-            elif ev.type == pygame.MOUSEBUTTONDOWN or ev.type == pygame.KEYDOWN:
-                pygame.quit()
+        for ev in event.get():
+            if ev.type == QUIT:
+                quit()
+            elif ev.type == KEYDOWN and ev.key == K_RETURN:
+                quit()
+            elif ev.type == KEYDOWN and ev.key == K_BACKSPACE:
+                if nickname != "":
+                    nickname = nickname[:-1]
+            elif ev.type == KEYDOWN and len(nickname) < 10:
+                nickname += ev.unicode
+        text = score_font.render(nickname, True, (255, 255, 255))
+        screen.blit(text, (190, 540))
+        display.update()
 
 
-def open_menu(screen, background):
-    menu_font = pygame.font.Font(None, 70)
+def open_menu(screen, records_holder):
+    screen.fill((0, 0, 0))
+    menu_font = font.Font(None, 70)
     text = menu_font.render("Trump The Legend", True, Color(MENU_TEXT_COLOR))
     screen.blit(text, (WIN_WIDTH // 2 - text.get_width() // 2,
                        WIN_HEIGHT // 2 - text.get_height() * 2))
 
-    menu_font = pygame.font.Font(None, 40)
+    menu_font = font.Font(None, 40)
     text = menu_font.render("Играть", True, Color(MENU_TEXT_COLOR))
     screen.blit(text, (WIN_WIDTH // 2 - text.get_width() // 2,
                        WIN_HEIGHT // 2 - text.get_height() // 2))
@@ -126,7 +142,7 @@ def open_menu(screen, background):
                      WIN_HEIGHT // 2 - text.get_height() // 2,
                      text.get_width(), text.get_height())
 
-    menu_font = pygame.font.Font(None, 40)
+    menu_font = font.Font(None, 40)
     text = menu_font.render("Таблица рекордов", True, Color(MENU_TEXT_COLOR))
     screen.blit(text, (WIN_WIDTH // 2 - text.get_width() // 2,
                        WIN_HEIGHT // 2 + text.get_height()))
@@ -136,24 +152,61 @@ def open_menu(screen, background):
 
     menu_running = True
     while menu_running:
-        for ev in pygame.event.get():
-            if ev.type == pygame.QUIT:
-                pygame.quit()
-            elif ev.type == pygame.MOUSEBUTTONDOWN\
+        for ev in event.get():
+            if ev.type == QUIT:
+                quit()
+            elif ev.type == MOUSEBUTTONDOWN\
                     and play_btn_rect[0] <= ev.pos[0] <= play_btn_rect[0] + play_btn_rect[2]\
                     and play_btn_rect[1] <= ev.pos[1] <= play_btn_rect[1] + play_btn_rect[3]:
                 menu_running = False
-        pygame.display.update()
+            elif ev.type == MOUSEBUTTONDOWN\
+                    and records_btn_rect[0] <= ev.pos[0] <= records_btn_rect[0] + records_btn_rect[2]\
+                    and records_btn_rect[1] <= ev.pos[1] <= records_btn_rect[1] + records_btn_rect[3]:
+                open_records_table(screen, records_holder)
+                menu_running = False
+        display.update()
+
+
+def open_records_table(screen, records_holder):
+    screen.fill((0, 0, 0))
+    records_font = font.Font(None, 70)
+    text = records_font.render("Таблица рекордов:", True, Color(MENU_TEXT_COLOR))
+    screen.blit(text, (WIN_WIDTH // 2 - text.get_width() // 2,
+                       WIN_HEIGHT // 20))
+
+    records_font = font.Font(None, 50)
+    for i in range(10):
+        text = records_font.render(" ".join(records_holder.records[i]), True, Color(RECORDS_TEXT_COLOR))
+        screen.blit(text, (WIN_WIDTH // 5,
+                           WIN_HEIGHT // 12 + text.get_height() * 1.4 * (i + 1)))
+
+    records_font = font.Font(None, 40)
+    text = records_font.render("Выйти", True, Color(MENU_TEXT_COLOR))
+    screen.blit(text, (WIN_WIDTH // 20,
+                       WIN_HEIGHT // 2 + text.get_height() * 9))
+    back_btn_rect = (WIN_WIDTH // 20, WIN_HEIGHT // 2 + text.get_height() * 9, text.get_width(), text.get_height())
+
+    records_running = True
+    while records_running:
+        for ev in event.get():
+            if ev.type == QUIT:
+                quit()
+            elif ev.type == MOUSEBUTTONDOWN and back_btn_rect[0] <= ev.pos[0] <= back_btn_rect[0] + back_btn_rect[2]\
+                    and back_btn_rect[1] <= ev.pos[1] <= back_btn_rect[1] + back_btn_rect[3]:
+                records_running = False
+                open_menu(screen, records_holder)
+        display.update()
 
 
 def main():
-    pygame.init()
-    screen = pygame.display.set_mode(DISPLAY)
-    pygame.display.set_caption("Trump The Legend")  # Пишем в шапку
+    init()
+    screen = display.set_mode(DISPLAY)
+    display.set_caption("Trump The Legend")  # Пишем в шапку
 
     bg = Surface((WIN_WIDTH, WIN_HEIGHT))  # Создание заднего фона
 
-    open_menu(screen, bg)
+    records_holder = RecordsHolder()
+    open_menu(screen, records_holder)
 
     bg.fill(Color(GAME_BACKGROUND_COLOR))  # Заливаем фон сплошным цветом
 
@@ -168,11 +221,11 @@ def main():
         up = False
         is_on_pause = False  # проверка на паузу
 
-        entities = pygame.sprite.Group()  # Все объекты
+        entities = sprite.Group()  # Все объекты
         obstacles = []  # то, во что мы будем врезаться или опираться
         coins = []  # список для монет
         exits = []  # список для выходов
-        monsters = pygame.sprite.Group()  # все монстры
+        monsters = sprite.Group()  # все монстры
 
         entities.add(hero)
 
@@ -213,17 +266,17 @@ def main():
         total_level_height = len(levels[current_level]) * TILE_HEIGHT  # высоту
 
         camera = Camera(camera_configure, total_level_width, total_level_height)
-        timer = pygame.time.Clock()
+        timer = time.Clock()
 
         running = True
         while running:  # Основной цикл программы
             timer.tick(30)  # fps
             monsters.update(obstacles)
 
-            for e in pygame.event.get():  # Обрабатываем события
+            for e in event.get():  # Обрабатываем события
                 if e.type == QUIT:
                     running = False
-                    pygame.quit()
+                    quit()
                 if e.type == KEYDOWN and e.key == K_UP:
                     up = True
                 if e.type == KEYUP and e.key == K_UP:
@@ -260,12 +313,12 @@ def main():
             if running:
                 draw_score(screen, hero.level_scores)
 
-            pygame.display.update()  # обновление и вывод всех изменений на экран
+            display.update()  # обновление и вывод всех изменений на экран
 
         draw_intermediate_results(screen, current_level + 1, hero.level_scores)
         hero.zeroize_level_score()
 
-    draw_final_results(screen, hero.total_scores)
+    draw_final_results(screen, hero.total_scores, records_holder)
 
 
 if __name__ == "__main__":
